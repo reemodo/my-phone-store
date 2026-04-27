@@ -2,6 +2,7 @@
 
 generator client {
   provider = "prisma-client-js"
+
 }
 
 datasource db {
@@ -30,7 +31,7 @@ model Product {
   stock       Int      @default(1)
   imageUrl    String?  // URL to image
   createdAt   DateTime @default(now())
-
+  
   orderItems  OrderItem[]
 }
 
@@ -42,12 +43,19 @@ model Order {
   totalAmount   Decimal
   status        String   @default("PENDING") // PENDING, CONFIRMED, COMPLETED
 
+  city          String  
+  street        String
+  locationUrl   String?
+
+  notes  String? 
+
   // Relations
   userId        String?
   user          User?    @relation(fields: [userId], references: [id])
 
-  pickupSlotId  String
-  pickupSlot    PickupSlot @relation(fields: [pickupSlotId], references: [id])
+  pickupSlotId  String?
+  pickupSlot    PickupSlot? @relation(fields: [pickupSlotId], references: [id])
+  
 
   items         OrderItem[]
   createdAt     DateTime @default(now())
