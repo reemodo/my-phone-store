@@ -2,7 +2,6 @@
 
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
@@ -14,7 +13,7 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  password  String   // Hashed password
+  password  String // Hashed password
   role      String   @default("ADMIN") // "ADMIN" or "CUSTOMER"
   createdAt DateTime @default(now())
   orders    Order[]
@@ -26,39 +25,38 @@ model Product {
   name        String
   description String
   price       Decimal
-  category    String   // "Used Phone", "New Phone", "Watch", "AirPods"
-  condition   String?  // "New", "Used - Good", "Used - Fair"
+  category    String // "Used Phone", "New Phone", "Watch", "AirPods"
+  condition   String? // "New", "Used - Good", "Used - Fair"
   stock       Int      @default(1)
-  imageUrl    String?  // URL to image
+  imageUrl    String? // URL to image
   createdAt   DateTime @default(now())
-  
-  orderItems  OrderItem[]
+
+  orderItems OrderItem[]
 }
 
 // --- ORDERS & CHECKOUT ---
 model Order {
-  id            String   @id @default(uuid())
+  id            String  @id @default(uuid())
   customerName  String
   customerPhone String
   totalAmount   Decimal
-  status        String   @default("PENDING") // PENDING, CONFIRMED, COMPLETED
+  status        String  @default("PENDING") // PENDING, CONFIRMED, COMPLETED
 
-  city          String  
-  street        String
-  locationUrl   String?
+  city        String
+  street      String
+  locationUrl String?
 
-  notes  String? 
+  notes String?
 
   // Relations
-  userId        String?
-  user          User?    @relation(fields: [userId], references: [id])
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
 
-  pickupSlotId  String?
-  pickupSlot    PickupSlot? @relation(fields: [pickupSlotId], references: [id])
-  
+  pickupSlotId String?
+  pickupSlot   PickupSlot? @relation(fields: [pickupSlotId], references: [id])
 
-  items         OrderItem[]
-  createdAt     DateTime @default(now())
+  items     OrderItem[]
+  createdAt DateTime    @default(now())
 }
 
 model OrderItem {
@@ -74,11 +72,11 @@ model OrderItem {
 // --- LOGISTICS (Your Custom "Dynamic Slot" System) ---
 model PickupSlot {
   id           String   @id @default(uuid())
-  locationName String   // e.g. "University Gate"
-  startTime    DateTime 
-  endTime      DateTime 
-  maxOrders    Int      // How many people can meet you here?
+  locationName String // e.g. "University Gate"
+  startTime    DateTime
+  endTime      DateTime
+  maxOrders    Int // How many people can meet you here?
   bookedCount  Int      @default(0)
 
-  orders       Order[]
+  orders Order[]
 }

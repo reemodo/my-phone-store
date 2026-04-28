@@ -137,23 +137,20 @@ const [locationUrl, setLocationUrl] = useState("");
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">First Name</label>
-                <input required type="text" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" />
+                <input required name="firstName"  type="text" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Last Name</label>
-                <input required type="text" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" />
+                <input required name="lastName" type="text" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" />
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">Phone Number</label>
-              <input required type="tel" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" placeholder="05X-XXXXXXX" />
+              <input required name="phone" type="tel" className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" placeholder="05X-XXXXXXX" />
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Delivery Address</label>
-              <textarea required rows={3} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" placeholder="City, Street, Building, Apartment..."></textarea>
-            </div>
+            
             <div className="border-t border-gray-100 pt-6 mt-6">
               <h2 className="text-lg font-bold text-black mb-4">Address Information</h2>
               
@@ -195,6 +192,10 @@ const [locationUrl, setLocationUrl] = useState("");
                   {locationUrl ? (<span>{locationUrl ? "تحديث الموقع الحالي" : "تحديد موقعي التلقائي"}</span>) : "Share Current Location"}
                 </button>
               </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">Order Notes</label>
+              <textarea  rows={3} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-laqta outline-none" placeholder="City, Street, Building, Apartment..."></textarea>
             </div>
           </form>
         </div>

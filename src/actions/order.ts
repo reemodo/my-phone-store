@@ -15,16 +15,19 @@ export async function createOrder(cartItems: any[], formData: any) {
     const result = await prisma.$transaction(async (tx) => {
     const newOrder = await prisma.order.create({
       data: {
-        customerName: `${formData.firstName} ${formData.lastName}`,
-        customerPhone: formData.phone,
-        totalAmount: total,
-        status: "PENDING",
-        items: {
-          create: cartItems.map((item) => ({
-            productId: item.id,
-            quantity: item.quantity,
-            price: item.price,
-          })),
+          customerName: `${formData.firstName} ${formData.lastName}`,
+          customerPhone: formData.phone,
+          totalAmount: total,
+          status: "PENDING",
+          city: formData.city,             // إضافة المدينة
+          street: formData.street,         // إضافة الشارع
+          locationUrl: formData.locationUrl, // رابط الخرائط
+          items: {
+            create: cartItems.map((item) => ({
+              productId: item.id,
+              quantity: item.quantity,
+              price: item.price,
+            })),
         },
       },
     });
