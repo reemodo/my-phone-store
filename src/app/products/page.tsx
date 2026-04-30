@@ -39,7 +39,7 @@ export default async function ProductsPage({
       category: "Audio"
     };
   }
-
+  
   // 2. Fetch products using our smart filter
   const products = await prisma.product.findMany({
     where: dbFilter, 
