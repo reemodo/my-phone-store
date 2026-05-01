@@ -16,7 +16,7 @@ export default function CartPage() {
   }, []);
 
   // 2. Calculate the total price
-  const cartTotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const cartTotal = items.reduce((total: number, item) => total + (Number(item.price) * item.quantity), 0);
 
   // 3. Don't render anything until the client has loaded the saved Zustand data
   if (!mounted) return null;
@@ -71,7 +71,7 @@ export default function CartPage() {
                 {/* Price and Delete Button */}
                 <div className="flex flex-col items-center sm:items-end gap-4">
                   <span className="text-2xl font-extrabold text-black">
-                    ₪{(item.price * item.quantity).toFixed(2)}
+                    ₪{(Number(item.price) * item.quantity).toFixed(2)}
                   </span>
                   <button 
                     onClick={() => removeItem(item.id)}

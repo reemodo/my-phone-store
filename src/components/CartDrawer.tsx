@@ -16,7 +16,7 @@ export default function CartDrawer() {
 
   if (!mounted || !isDrawerOpen) return null;
 
-  const cartTotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const cartTotal = items.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
 
   return (
     <>
@@ -50,12 +50,12 @@ export default function CartDrawer() {
             items.map((item) => (
               <div key={item.id} className="flex gap-3 items-center">
                 <div className="relative w-16 h-16 bg-[#fbfbfd] rounded-lg flex-shrink-0 p-1 border border-gray-50">
-                  <Image src={item.imageUrl || "/media/hero-phone.jpg"} alt={item.name} fill className="object-contain" />
+                  <Image src={item.images[0] || "/media/hero-phone.jpg"} alt={item.name} fill className="object-contain" />
                 </div>
                 <div className="flex-grow min-w-0">
                   <h4 className="text-sm font-bold text-black truncate font-outfit">{item.name}</h4>
                   <p className="text-xs text-gray-500 mt-0.5">Qty: {item.quantity}</p>
-                  <p className="text-sm font-extrabold text-black mt-0.5">₪{(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="text-sm font-extrabold text-black mt-0.5">₪{(Number(item.price) * Number(item.quantity)).toFixed(2)}</p>
                 </div>
                 <button onClick={() => removeItem(item.id)} className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition flex-shrink-0">
                   <Trash2 size={16} />

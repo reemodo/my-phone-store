@@ -1,11 +1,13 @@
+import { Decimal } from '@prisma/client/runtime/library';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type CartItem = {
   id: string;
   name: string;
-  price: number;
+  price: Decimal;
   imageUrl: string | null;
+  images:string[];
   quantity: number;
 };
 

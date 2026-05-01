@@ -79,7 +79,8 @@ export default async function ProductsPage({
                 key={product.id} 
                 product={{
                   ...product,
-                  price: Number(product.price)
+                  images: product.images,
+                  price: product.price
                 }} 
               />
             ))}

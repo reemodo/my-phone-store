@@ -24,7 +24,7 @@ const [locationUrl, setLocationUrl] = useState("");
  
   , []);
 
-  const cartTotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const cartTotal = items.reduce((total: number, item) => total + (Number(item.price) * Number(item.quantity)), 0);
 
   // Handle the handle Get Location 
   const handleGetLocation = () => {
@@ -211,7 +211,7 @@ const [locationUrl, setLocationUrl] = useState("");
               {items.map((item) => (
                 <div key={item.id} className="flex justify-between text-gray-600">
                   <span className="truncate pr-4">{item.quantity}x {item.name}</span>
-                  <span className="font-medium text-black">₪{(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-medium text-black">₪{(Number(item.price) * Number(item.quantity)).toFixed(2)}</span>
                 </div>
               ))}
             </div>
